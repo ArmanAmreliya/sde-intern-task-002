@@ -108,14 +108,14 @@ You must handle these cases and talk about them in your video:
 
 ## Run it
 
-This is a pnpm workspace. Install once at the root.
+Use Node.js 24 and pnpm. Install once at the workspace root.
 
 ```bash
 pnpm install
 pnpm dev          # api on :8787 and web on :5173
 ```
 
-Open http://localhost:5173. The starter page shows a title. `/api/health` returns `{ "status": "ok" }`.
+Open http://localhost:5173. Create a home, add members, and split a bill from the web page. `/api/health` returns `{ "status": "ok" }`.
 
 ```bash
 pnpm test         # run the visible tests in api/test
@@ -155,3 +155,11 @@ You must understand every line you submit. We check this with your video and in 
 5. Paste the repository link and the video link in the application form.
 
 We will run `pnpm install && pnpm check && pnpm typecheck && pnpm test` on your repository.
+
+## Decisions
+
+1. Use integer cents and SQLite insertion order. The split gives the first members one extra cent each until the remainder is exhausted, including when later members owe zero cents.
+2. Create a bill and its shares in one D1 batch. This makes the member set consistent and rolls back the bill if inserting a share fails. Composite foreign keys keep shares within one home, and a unique constraint gives each member one share per bill.
+3. Store the payment key and timestamp together using a conditional update. A replay with the winning key gets the original timestamp, while a different key gets a conflict. The web page reuses its key after a failed request and displays a share as paid after confirmation.
+
+To try the web flow, create a home, add three members, and enter a bill for 1000 cents. The shares will be 334, 333, and 333 cents. Pay one share to see its member's outstanding balance update.
