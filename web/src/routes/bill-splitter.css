@@ -1,0 +1,195 @@
+:root {
+  font-family: "Inter", system-ui, sans-serif;
+  color: #182c29;
+  background: #f4f7f5;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  width: min(100% - 2rem, 56rem);
+  margin: 3rem auto;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 6vw, 3rem);
+  letter-spacing: -0.055em;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+p {
+  color: #425b56;
+}
+
+.page-header {
+  margin-bottom: 1.75rem;
+}
+
+.panel,
+.empty {
+  padding: 1.25rem;
+  border: 1px solid #d7e3dd;
+  border-radius: 0.8rem;
+  background: #fff;
+}
+
+.home-controls,
+fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.setup {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.setup,
+.bills,
+.empty {
+  margin-top: 1rem;
+}
+.setup h2,
+.bills h2 {
+  margin-bottom: 0.75rem;
+}
+.setup p {
+  margin-bottom: 0.65rem;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+
+input,
+select,
+button {
+  min-height: 2.5rem;
+  border-radius: 0.45rem;
+  padding: 0.45rem 0.65rem;
+  font: inherit;
+}
+
+input,
+select {
+  width: 100%;
+  max-width: 20rem;
+  border: 1px solid #9badab;
+  background: #fff;
+}
+
+button {
+  color: #fff;
+  background: #18594d;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+button:hover:not(:disabled) {
+  background: #0e4238;
+}
+button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+:focus-visible {
+  outline: 2px solid #19785f;
+  outline-offset: 2px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.members {
+  margin-top: 0.9rem;
+}
+.members li,
+.bill header,
+.share-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.members li {
+  padding: 0.35rem 0;
+}
+.bill + .bill {
+  margin-top: 0.75rem;
+}
+.bill header {
+  margin-bottom: 0.65rem;
+}
+.share {
+  padding: 0.5rem 0;
+  border-top: 1px solid #d7e3dd;
+}
+.share-line {
+  min-height: 2.5rem;
+}
+.share-line > :first-child,
+.members li > :first-child {
+  overflow-wrap: anywhere;
+}
+.amount {
+  margin-left: auto;
+}
+.amount,
+.bill strong,
+.members li > :last-child {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.paid {
+  color: #18594d;
+  font-weight: 650;
+  padding: 0 0.55rem;
+}
+[role="alert"] {
+  margin: 0.5rem 0;
+  color: #a32131;
+}
+
+@media (max-width: 42rem) {
+  main {
+    margin-top: 1.5rem;
+  }
+  .setup {
+    grid-template-columns: 1fr;
+  }
+}
